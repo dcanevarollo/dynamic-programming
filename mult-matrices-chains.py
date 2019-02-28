@@ -30,9 +30,9 @@ def print_chain(brackets, i, j):
     print(") ", end='')
 
 
-# p = <p0, p1, p2, p3..., pn>, where the dimension of the Ai matrix is pi-1,pi. That is,
-# p is actually the dimensions array of our matrices on the chain.
-# For instance, dimension of A3 is p2,p3.
+# dimensions = <d0, d1, d2, d3..., dn>, where the dimension of the Ai matrix is di-1,di. That is,
+# dimensions is actually the dimensions array of our matrices on the chain.
+# For instance, dimension of A3 is d2,d3.
 def matrix_chain_order(dimensions, dim_size):
     # The 'm' array stores the minimum number of scalar multiplications needed.
     # We initialize it with zeros to simplify the code.
@@ -47,7 +47,7 @@ def matrix_chain_order(dimensions, dim_size):
     if dim_size == 2:
         m[1][-1] = dimensions[0]*dimensions[1]
 
-    # 'l' variable used to run through the p array
+    # 'l' variable used to run through the dimensions array
     for l in range(2, dim_size):
         for i in range(1, dim_size - l + 1):
             j = i+l-1
