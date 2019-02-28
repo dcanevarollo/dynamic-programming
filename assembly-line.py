@@ -1,3 +1,6 @@
+# Assembly line optimization
+# Author: Douglas Canevarollo
+
 # The assembly line problem consists of calculating and returning the cheapest path in relation to time costs.
 # Imagine to assembly line of an industry. This lines has assembly stations and each station has a cost and
 # a transfer cost in case of a change of lines be necessary.
