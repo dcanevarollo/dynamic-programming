@@ -7,6 +7,7 @@
 
 # That dynamic implementation has a O(n^3) time complexity class when the recursive has a O(2^n).
 from numpy import zeros
+from sys import maxsize  # Max value of int64 size
 
 
 # Helper class to store the information of the read matrices.
@@ -36,7 +37,7 @@ def print_chain(brackets, i, j):
 def matrix_chain_order(dimensions, dim_size):
     # The 'm' array stores the minimum number of scalar multiplications needed.
     # We initialize it with zeros to simplify the code.
-    m = zeros((dim_size, dim_size), dtype=int)
+    m = zeros((dim_size, dim_size), dtype='int64')
     # 'brackets' array stores the chain position that contains parentheses.
     brackets = zeros((dim_size, dim_size), dtype=int)
 
@@ -52,10 +53,13 @@ def matrix_chain_order(dimensions, dim_size):
         for i in range(1, dim_size - l + 1):
             j = i+l-1
 
+            m[i][j] = maxsize  # Similar to m <- infinite
             for k in range(i, j):
-                m[i][j] = m[i][k] + m[k+1][j] + dimensions[i - 1] * dimensions[k] * dimensions[j]
-                # 'k' is the optimal break point of the multiplication interval <Ai...j>
-                brackets[i][j] = k
+                temp = m[i][k] + m[k+1][j] + dimensions[i - 1] * dimensions[k] * dimensions[j]
+                if temp < m[i][j]:
+                    m[i][j] = temp
+                    # 'k' is the optimal break point of the multiplication interval <Ai...j>
+                    brackets[i][j] = k
 
     # Returns the minimum number of scalar multiplications needed and the brackets indexes array.
     return m[1][-1], brackets
