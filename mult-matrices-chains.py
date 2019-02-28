@@ -37,6 +37,13 @@ def matrix_chain_order(dimensions, dim_size):
     # 'brackets' array stores the chain position that contains parentheses.
     brackets = zeros((dim_size, dim_size), dtype=int)
 
+    # Cost is zero when multiplying one matrix.
+    if dim_size == 1:
+        raise RuntimeError
+
+    if dim_size == 2:
+        m[1][-1] = dimensions[0]*dimensions[1]
+
     # 'l' variable used to run through the p array
     for l in range(2, dim_size):
         for i in range(1, dim_size - l + 1):
@@ -78,8 +85,10 @@ if __name__ == "__main__":
 
         print("\nOptimal parenthesization\n> ", end='')
         print_chain(brackets_array, 0, dim_size-1)
-        print("\n%i scalar multiplications needed." % min_mult)
+        print("\n%i scalars multiplications needed." % min_mult)
     except ValueError:
         print("\nJust integers, please. Try again.")
+    except RuntimeError:
+        print("\nYou cannot multiply just one matrix.")
     finally:
         exit(0)
