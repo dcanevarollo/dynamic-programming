@@ -1,3 +1,6 @@
+# Matrices chain multiplication optimization
+# Author: Douglas Canevarollo
+
 # That optimization problem involves matrices multiplication. That is, considering and array chain
 # <A1, A2, ..., An>, which of the order of multiplications of this chain will return the least number
 # of scalar multiplications?
