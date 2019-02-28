@@ -1,3 +1,6 @@
+# DNA chain longest common sequence optimization
+# Author: Douglas Canevarollo
+
 # The DNA chain longest common sequence problem consists in determinate one of the possibles
 # common subsequences between two DNA sequences (X and Y, for instance). If we tried to
 # compare all genotypes in each sequence, we would have a time complexity O(2^n) (!).
